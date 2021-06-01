@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@geislabs/runtime",
-    "version": "0.0.56",
+    "version": "0.0.57",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
