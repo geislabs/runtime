@@ -1,0 +1,20 @@
+{
+    "private": true,
+    "name": "@geislabs/runtime-e2e",
+    "version": "0.0.63",
+    "description": "> TODO: description",
+    "author": "mads hargreave <mads.hargreave@gmail.com>",
+    "homepage": "",
+    "repository": "git://github.com/geislabs/html.git",
+    "license": "ISC",
+    "directories": {
+        "test": "test"
+    },
+    "files": [],
+    "publishConfig": {
+        "registry": "http://registry.npmjs.org/",
+        "access": "public"
+    },
+    "scripts": {},
+    "devDependencies": {}
+}
