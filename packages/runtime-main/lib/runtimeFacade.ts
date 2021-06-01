@@ -1,4 +1,5 @@
 import type { interfaces } from 'inversify'
+import type { EventEmitter } from 'events'
 import autobind from 'autobind-decorator'
 import { RuntimeContainer } from './runtimeContainer'
 import { RuntimeDeps } from './runtimeTypes'
@@ -9,11 +10,13 @@ import { FileSystem } from './filesystem'
 export class Runtime {
     #container: RuntimeContainer
 
+    public event: EventEmitter
     public http: Http
     public fs: FileSystem
 
     constructor(public config: RuntimeDeps) {
         this.#container = new RuntimeContainer()
+        this.event = config.event
         this.fs = config.fs
         this.http = config.http
     }
