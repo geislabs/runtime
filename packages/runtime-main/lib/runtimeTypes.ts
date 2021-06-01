@@ -1,7 +1,7 @@
 import { FileSystem } from './filesystem'
 import { Http } from './http'
 
-export interface Runtime {
+export interface RuntimeDeps {
     fs: FileSystem
     http: Http
 }

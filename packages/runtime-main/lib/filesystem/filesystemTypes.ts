@@ -1,5 +1,5 @@
-import type fs from 'fs'
+import type { IFs } from 'memfs'
 
-type FS = typeof fs
+type FS = IFs
 
 export interface FileSystem extends FS {}
