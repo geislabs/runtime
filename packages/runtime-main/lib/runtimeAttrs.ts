@@ -1,7 +1,5 @@
-import type { Http } from '@geislabs/runtime-http'
-import type { FileSystem } from './filesystem'
+import { Dependency } from './dependency'
 
-export interface CreateRuntimeAttrs {
-    fs: FileSystem
-    http: Http
+export interface CreateRuntimeAttrs<TDeps extends Dependency> {
+    dependencies: TDeps[]
 }

@@ -1,9 +1,10 @@
-import { runtime } from '../lib'
+import { config as createEvent, runtime } from '../lib'
 
 describe('provider', () => {
     test('simple', () => {
-        const actual = runtime()
+        const actual = runtime({
+            dependencies: [{ name: 'http', events: createEvent() }],
+        })
         expect(actual).toHaveProperty('http')
-        expect(actual).toHaveProperty('fs')
     })
 })

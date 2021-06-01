@@ -1,15 +1,13 @@
-import { config as createEvents, Event } from '@geislabs/runtime-event'
-import { config as createHttp, HttpEvent } from '@geislabs/runtime-http'
-import { fs as memfs } from 'memfs'
+import { config as createEvents } from '@geislabs/runtime-event'
+import { Dependency } from './dependency'
 import { RuntimeConfig } from './runtimeConfig'
-import { Runtime } from './runtimeFacade'
+import { buildRuntime } from './runtimeFactory'
 
-export function runtime<TEvent extends Event<any> & HttpEvent>({
-    fs = memfs,
-    events = createEvents<TEvent>(),
-    http = createHttp({ events }),
+export function runtime<TDep extends Dependency>({
+    // @ts-expect-error
+    events = createEvents(),
+    dependencies = [],
     ...config
-}: Partial<RuntimeConfig<TEvent>> = {}) {
-    const instance = new Runtime({ fs, http, events, ...config })
-    return instance
+}: Partial<RuntimeConfig<TDep>> = {}) {
+    return buildRuntime({ dependencies, ...config })
 }

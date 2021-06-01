@@ -1,5 +1,7 @@
-import { Event } from '@geislabs/runtime-event'
-import { RuntimeDeps } from './runtimeTypes'
+import { Events } from '@geislabs/runtime-event'
+import { Dependency } from './dependency'
 
-export interface RuntimeConfig<TEvent extends Event<any>>
-    extends RuntimeDeps<TEvent> {}
+export interface RuntimeConfig<TDeps extends Dependency> {
+    events: TDeps extends Dependency<any, infer TEvent> ? Events<TEvent> : never
+    dependencies: TDeps[]
+}
