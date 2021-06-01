@@ -3,7 +3,7 @@ import { EventConfig } from './eventConfig'
 import { Events } from './eventFacade'
 import { Event } from './eventTypes'
 
-export function config<TEvent extends Event>({
+export function config<TEvent extends Event<any>>({
     emitter = new EventEmitter(),
     ...config
 }: Partial<EventConfig> = {}) {
