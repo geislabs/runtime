@@ -1,5 +1,5 @@
+import type { Event, Events } from '@geislabs/runtime-event'
 import type { interfaces } from 'inversify'
-import type { EventEmitter } from 'events'
 import autobind from 'autobind-decorator'
 import { RuntimeContainer } from './runtimeContainer'
 import { RuntimeDeps } from './runtimeTypes'
@@ -7,16 +7,16 @@ import { Http } from './http'
 import { FileSystem } from './filesystem'
 
 @autobind
-export class Runtime {
+export class Runtime<TEvent extends Event> {
     #container: RuntimeContainer
 
-    public event: EventEmitter
+    public events: Events<TEvent>
     public http: Http
     public fs: FileSystem
 
-    constructor(public config: RuntimeDeps) {
+    constructor(public config: RuntimeDeps<TEvent>) {
         this.#container = new RuntimeContainer()
-        this.event = config.event
+        this.events = config.events
         this.fs = config.fs
         this.http = config.http
     }

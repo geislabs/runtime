@@ -1,6 +1,6 @@
 {
     "private": false,
-    "name": "@geislabs/runtime",
+    "name": "@geislabs/runtime-event",
     "version": "0.0.61",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
@@ -24,11 +24,5 @@
         "build": "tsc",
         "watch": "tsc --watch"
     },
-    "dependencies": {
-        "@geislabs/runtime-event": "^0.0.61",
-        "autobind-decorator": "^2.4.0",
-        "inversify": "^5.1.1",
-        "memfs": "^3.2.2",
-        "node-fetch": "^2.6.1"
-    }
+    "dependencies": {}
 }
