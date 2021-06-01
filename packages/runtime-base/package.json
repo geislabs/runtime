@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@geislabs/runtime-base",
-    "version": "0.0.62",
+    "version": "0.0.63",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
@@ -25,7 +25,7 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@geislabs/runtime-event": "^0.0.62",
+        "@geislabs/runtime-event": "^0.0.63",
         "autobind-decorator": "^2.4.0",
         "inversify": "^5.1.1"
     }
