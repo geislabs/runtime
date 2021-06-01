@@ -23,5 +23,8 @@
         "clean": "rimraf dist",
         "build": "tsc",
         "watch": "tsc --watch"
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.1"
     }
 }
