@@ -1,6 +1,6 @@
 {
     "private": false,
-    "name": "@geislabs/runtime-base",
+    "name": "@geislabs/runtime-http",
     "version": "0.0.65",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
@@ -26,7 +26,6 @@
     },
     "dependencies": {
         "@geislabs/runtime-event": "^0.0.65",
-        "autobind-decorator": "^2.4.0",
-        "inversify": "^5.1.1"
+        "@geislabs/runtime-base": "^0.0.65"
     }
 }

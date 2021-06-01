@@ -3,11 +3,14 @@ import { map } from 'ix/asynciterable/operators'
 import { EventConfig } from './eventConfig'
 import { Event, EventEmitter } from './eventTypes'
 
-export class Events<TEvent extends Event> implements EventEmitter<TEvent> {
+export class Events<TEvent extends Event<any>> implements EventEmitter<TEvent> {
     constructor(public config: EventConfig) {}
 
-    emit(event: TEvent) {
-        this.config.emitter.emit(event.kind, event)
+    emit<TName extends TEvent['kind']>(
+        eventName: Extract<TEvent, { kind: TName }>['kind'],
+        payload: Extract<TEvent, { kind: TName }>['payload']
+    ) {
+        this.config.emitter.emit(eventName, { payload })
     }
 
     on<TName extends TEvent['kind']>(

@@ -1,6 +1,10 @@
 import type { Event } from '@geislabs/runtime-event'
-import type { Runtime } from '@geislabs/runtime-base'
+import type { Http } from '@geislabs/runtime-http'
 
-export type RuntimePlugin<TEvent extends Event = never> = (
-    runtime: Runtime<TEvent>
+export interface PluginContext {
+    http: Http
+}
+
+export type RuntimePlugin<TEvent extends Event<any> = never> = (
+    runtime: PluginContext
 ) => void | Promise<void>

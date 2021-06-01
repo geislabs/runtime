@@ -1,13 +1,13 @@
 import type { Event, Events } from '@geislabs/runtime-event'
+import type { Http, HttpEvent } from '@geislabs/runtime-http'
 import type { interfaces } from 'inversify'
 import autobind from 'autobind-decorator'
 import { RuntimeContainer } from './runtimeContainer'
 import { RuntimeDeps } from './runtimeTypes'
-import { Http } from './http'
 import { FileSystem } from './filesystem'
 
 @autobind
-export class Runtime<TEvent extends Event = never> {
+export class Runtime<TEvent extends Event<any> = never> {
     #container: RuntimeContainer
 
     public events: Events<TEvent>

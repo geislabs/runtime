@@ -7,6 +7,6 @@ describe('event', () => {
         expect.hasAssertions()
         const event = config<TestEvent>()
         event.on('test', (value) => expect(value).toBe(true))
-        event.emit({ kind: 'test', payload: true })
+        event.emit('test', true)
     })
 })
