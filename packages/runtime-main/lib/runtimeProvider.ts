@@ -1,8 +1,7 @@
 import { config as createEvents, Event } from '@geislabs/runtime-event'
+import { Runtime, RuntimeConfig } from '@geislabs/runtime-base'
 import { fs as memfs } from 'memfs'
 import fetch from 'node-fetch'
-import { RuntimeConfig } from './runtimeConfig'
-import { Runtime } from './runtimeFacade'
 
 export function runtime<TEvent extends Event>({
     fs = memfs,

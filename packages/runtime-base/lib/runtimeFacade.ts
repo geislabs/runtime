@@ -7,7 +7,7 @@ import { Http } from './http'
 import { FileSystem } from './filesystem'
 
 @autobind
-export class Runtime<TEvent extends Event> {
+export class Runtime<TEvent extends Event = never> {
     #container: RuntimeContainer
 
     public events: Events<TEvent>
