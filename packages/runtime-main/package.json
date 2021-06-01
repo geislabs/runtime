@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@geislabs/runtime",
-    "version": "0.0.66",
+    "version": "0.0.67",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
@@ -25,9 +25,9 @@
         "watch": "tsc --watch"
     },
     "dependencies": {
-        "@geislabs/runtime-event": "^0.0.66",
-        "@geislabs/runtime-http": "^0.0.66",
-        "@geislabs/runtime-plugin": "^0.0.66",
+        "@geislabs/runtime-event": "^0.0.67",
+        "@geislabs/runtime-http": "^0.0.67",
+        "@geislabs/runtime-plugin": "^0.0.67",
         "autobind-decorator": "^2.4.0",
         "inversify": "^5.1.1",
         "memfs": "^3.2.2",
