@@ -2,7 +2,7 @@ import { config, Event } from '../lib'
 
 type TestEvent = Event<'test', true>
 
-describe('events', () => {
+describe('event', () => {
     test('simple', () => {
         expect.hasAssertions()
         const event = config<TestEvent>()
