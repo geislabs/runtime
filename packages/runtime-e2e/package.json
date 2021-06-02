@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "@geislabs/runtime-e2e",
-    "version": "0.0.69",
+    "version": "0.0.70",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
@@ -17,6 +17,6 @@
     },
     "scripts": {},
     "devDependencies": {
-        "@geislabs/runtime": "^0.0.69"
+        "@geislabs/runtime": "^0.0.70"
     }
 }
