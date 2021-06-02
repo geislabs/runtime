@@ -15,5 +15,8 @@
         "registry": "http://registry.npmjs.org/",
         "access": "public"
     },
-    "scripts": {}
+    "scripts": {},
+    "devDependencies": {
+        "@geislabs/runtime": "^0.0.69"
+    }
 }
