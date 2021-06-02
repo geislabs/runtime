@@ -1,8 +1,7 @@
-import 'reflect-metadata'
-export * from '@geislabs/runtime-event'
-export * from './runtimeProvider'
-export * from './runtimeTypes'
-export * from './runtimeProvider'
-export * from './runtimeConfig'
-export * from './dependency'
-export * from './plugin'
+export {
+    config,
+    Plugins,
+    plugin,
+    Plugin,
+    Context,
+} from '@geislabs/runtime-plugin'
