@@ -21,8 +21,8 @@
     },
     "scripts": {
         "clean": "rimraf dist",
-        "build": "tsc",
-        "watch": "tsc --watch"
+        "build": "npm run clean && tsc",
+        "watch": "npm run clean && tsc --watch"
     },
     "dependencies": {
         "@geislabs/runtime-event": "^0.0.69",
