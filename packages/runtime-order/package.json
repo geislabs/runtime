@@ -1,0 +1,30 @@
+{
+    "private": false,
+    "name": "@geislabs/runtime-order",
+    "version": "0.0.69",
+    "description": "> TODO: description",
+    "author": "mads hargreave <mads.hargreave@gmail.com>",
+    "homepage": "",
+    "repository": "git://github.com/geislabs/html.git",
+    "license": "ISC",
+    "main": "dist/index.js",
+    "directories": {
+        "dist": "dist",
+        "test": "test"
+    },
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "registry": "http://registry.npmjs.org/",
+        "access": "public"
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "tsc",
+        "watch": "tsc --watch"
+    },
+    "dependencies": {
+        "topological-sort": "^0.3.0"
+    }
+}

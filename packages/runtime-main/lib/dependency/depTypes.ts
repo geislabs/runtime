@@ -1,9 +1,7 @@
 import { Event, Events } from '@geislabs/runtime-event'
+import { Plugin } from '../plugin'
 
-export interface Dependency<
-    TName extends string = string,
-    TEvent extends Event<any> = any
-> {
+export interface Dependency<TName extends string = string, TExports = unknown>
+    extends Plugin<TName, never, TExports> {
     name: TName
-    events: Events<TEvent>
 }
