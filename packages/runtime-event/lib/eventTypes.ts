@@ -6,16 +6,16 @@ export interface Event<TKind extends string, TPayload = any> {
 }
 
 export interface EventEmitter<TEvent extends Event<any>> {
-    emit: <TName extends string>(
-        eventName: Extract<TEvent, { kind: TName }>['kind'],
-        payload: Extract<TEvent, { kind: TName }>['payload']
+    emit: <TKind extends TEvent['kind']>(
+        eventName: TKind,
+        payload: Extract<TEvent, { kind: TKind }>['payload']
     ) => void
-    on: <TName extends string>(
-        eventName: Extract<TEvent, { kind: TName }>['kind'],
-        callback: (payload: Extract<TEvent, { kind: TName }>['payload']) => void
+    on: <TKind extends TEvent['kind']>(
+        eventName: TKind,
+        callback: (payload: Extract<TEvent, { kind: TKind }>['payload']) => void
     ) => void
-    subscribe<TName extends TEvent['kind']>(
-        eventName: TName,
+    subscribe<TKind extends TEvent['kind']>(
+        eventName: TKind,
         options?: EventListenerOptions
-    ): AsyncIterable<Extract<TEvent, { kind: TName }>['payload']>
+    ): AsyncIterable<Extract<TEvent, { kind: TKind }>['payload']>
 }

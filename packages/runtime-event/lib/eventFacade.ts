@@ -6,25 +6,25 @@ import { Event, EventEmitter } from './eventTypes'
 export class Events<TEvent extends Event<any>> implements EventEmitter<TEvent> {
     constructor(public config: EventConfig) {}
 
-    emit<TName extends TEvent['kind']>(
-        eventName: Extract<TEvent, { kind: TName }>['kind'],
-        payload: Extract<TEvent, { kind: TName }>['payload']
+    emit<TKind extends TEvent['kind']>(
+        eventName: TKind,
+        payload: Extract<TEvent, { kind: TKind }>['payload']
     ) {
         this.config.emitter.emit(eventName, { payload })
     }
 
-    on<TName extends TEvent['kind']>(
-        eventName: TName,
-        callback: (payload: Extract<TEvent, { kind: TName }>['payload']) => void
+    on<TKind extends TEvent['kind']>(
+        eventName: TKind,
+        callback: (payload: Extract<TEvent, { kind: TKind }>['payload']) => void
     ) {
         this.config.emitter.on(eventName, (event) => callback(event.payload))
     }
 
-    subscribe<TName extends TEvent['kind']>(
-        eventName: TName,
+    subscribe<TKind extends TEvent['kind']>(
+        eventName: TKind,
         options: EventListenerOptions = {}
-    ): AsyncIterable<Extract<TEvent, { kind: TName }>['payload']> {
-        return fromEvent<Extract<TEvent, { kind: TName }>>(
+    ): AsyncIterable<Extract<TEvent, { kind: TKind }>['payload']> {
+        return fromEvent<Extract<TEvent, { kind: TKind }>>(
             this.config.emitter,
             eventName,
             options
