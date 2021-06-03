@@ -5,7 +5,7 @@ import { fetch, http } from './support'
 describe('dependency', () => {
     test('simple', async () => {
         const instance = config({
-            plugins: [http, fetch],
+            plugins: [http(), fetch()],
         })
         const context = await instance.load()
         const response = await context.fetch('https://google.com/about')
@@ -13,7 +13,7 @@ describe('dependency', () => {
     })
     test('ordering', async () => {
         const instance = config({
-            plugins: [fetch, http],
+            plugins: [fetch(), http()],
         })
         const context = await instance.load()
         const response = await context.fetch('https://google.com/about')
@@ -21,16 +21,16 @@ describe('dependency', () => {
     })
     test('missing', async () => {
         const instance = config({
-            plugins: [fetch],
+            plugins: [fetch()],
         })
         await expect(instance.load()).rejects.toThrow(PluginNotFoundError)
     })
     test('circular', async () => {
         const instance = config({
             plugins: [
-                { ...http, depends: [fetch] },
+                { ...http(), depends: [fetch()] },
                 // @ts-expect-error
-                { ...fetch, depends: [http] },
+                { ...fetch(), depends: [http()] },
             ],
         })
         await expect(instance.load()).rejects.toThrow(PluginCyclicalError)

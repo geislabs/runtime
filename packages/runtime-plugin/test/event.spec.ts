@@ -5,8 +5,8 @@ describe('event', () => {
     test('listen', async () => {
         const instance = config({
             plugins: [
-                http,
-                fetch,
+                http(),
+                fetch(),
                 proxy({ proxy: { 'google.com': 'localhost:4000' } }),
             ],
         })
