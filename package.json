@@ -13,6 +13,7 @@
         "test": "jest",
         "test:unit": "jest --testPathIgnorePatterns packages/runtime-e2e",
         "test:e2e": "jest \"packages/runtime-e2e\"",
+        "test:cache:reset": "jest --clearCache",
         "watch": "jest --watch",
         "watch:e2e": "jest \"packages/runtime-e2e\" --watch",
         "watch:plugin": "jest \"packages/runtime-plugin\" --watch",

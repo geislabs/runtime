@@ -31,17 +31,13 @@ export interface Plugin<
     TExports = any,
     TImports extends Plugin<any, any, any, any> = any,
     TEvent extends Event<any, any> = Event<any, any>
-> extends Sortable<TName, TImports> {
+> {
     pluginName: TName
     depends?: TImports[]
     register: (
         context: Context<TImports, TEvent>,
         config: TConfig
     ) => RegisterResult<TExports>
-    // (options?: z.infer<TConfig>): PluginObject<
-    //     // @ts-expect-error
-    //     Plugin<TName, TConfig, TExports, TImports, TEvent>
-    // >
 }
 
 export interface PluginObject<TPlugin extends Plugin<any>> {

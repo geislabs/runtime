@@ -3,9 +3,11 @@ import { config } from '@geislabs/runtime'
 const plugins = config({
     plugins: [
         {
-            name: 'value' as const,
-            register() {
-                return { get: () => 5 }
+            plugin: {
+                pluginName: 'value' as const,
+                register() {
+                    return { get: () => 5 }
+                },
             },
         },
     ],
