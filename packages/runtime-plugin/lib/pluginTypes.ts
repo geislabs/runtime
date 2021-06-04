@@ -1,13 +1,14 @@
 import { Event, EventEmitter } from '@geislabs/runtime-event'
 import { Sortable } from '@geislabs/runtime-order'
+import { z } from 'zod'
+
+export type PluginSchema = z.ZodSchema<any>
 
 export type GetImports<TImport extends Plugin<string>> = {
-    [P in TImport['name']]: Extract<TImport, { name: P }> extends Plugin<
-        string,
-        infer TExports,
-        any,
-        infer TEvent
-    >
+    [P in TImport['pluginName']]: Extract<
+        TImport,
+        { pluginName: P }
+    > extends Plugin<string, any, infer TExports, any, infer TEvent>
         ? TExports & GetDefaults<TEvent>
         : never
 }
@@ -26,21 +27,37 @@ export type Context<
 
 export interface Plugin<
     TName extends string,
+    TConfig extends PluginSchema = any,
     TExports = any,
     TImports extends Plugin<any, any, any, any> = any,
     TEvent extends Event<any, any> = Event<any, any>
 > extends Sortable<TName, TImports> {
-    name: TName
+    pluginName: TName
     depends?: TImports[]
-    register: (context: Context<TImports, TEvent>) => RegisterResult<TExports>
+    register: (
+        context: Context<TImports, TEvent>,
+        config: TConfig
+    ) => RegisterResult<TExports>
+    // (options?: z.infer<TConfig>): PluginObject<
+    //     // @ts-expect-error
+    //     Plugin<TName, TConfig, TExports, TImports, TEvent>
+    // >
+}
+
+export interface PluginObject<TPlugin extends Plugin<any>> {
+    plugin: TPlugin
+    options?: TPlugin extends Plugin<string, infer TSchema>
+        ? z.infer<TSchema>
+        : never
 }
 
 export interface PluginInstance<
     TName extends string,
+    TConfig extends PluginSchema = any,
     TExports = any,
     TImports extends Plugin<any, any, any, any> = any,
     TEvent extends Event<any, any> = Event<any, any>
-> extends Plugin<TName, TExports, TImports, TEvent>,
+> extends Plugin<TName, TConfig, TExports, TImports, TEvent>,
         EventEmitter<TEvent> {
     register: (
         context: Context<TImports, TEvent>

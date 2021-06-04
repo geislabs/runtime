@@ -10,3 +10,7 @@ export interface TestResponse {
 export interface TestHttpExports {
     request: (request: TestRequest) => Promise<TestResponse>
 }
+
+export interface ProxyMapping {
+    [key: string]: string
+}

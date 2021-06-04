@@ -1,13 +1,16 @@
-import { config } from '../lib'
+import { config, PluginObject } from '../lib'
 import { http, fetch, proxy } from './support'
 
 describe('event', () => {
     test('listen', async () => {
         const instance = config({
             plugins: [
-                http(),
-                fetch(),
-                proxy({ proxy: { 'google.com': 'localhost:4000' } }),
+                { plugin: http },
+                { plugin: fetch },
+                {
+                    plugin: proxy,
+                    options: { proxy: { 'google.com': 'localhost:4000' } },
+                },
             ],
         })
         const context = await instance.load()

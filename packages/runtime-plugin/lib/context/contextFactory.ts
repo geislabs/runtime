@@ -1,17 +1,25 @@
 import { EventEmitter } from '@geislabs/runtime-event'
 import { resolve, SortStatus } from '@geislabs/runtime-order'
 import { PluginCyclicalError, PluginNotFoundError } from '../pluginErrors'
-import { Context, Plugin } from '../pluginTypes'
+import { Context, Plugin, PluginObject } from '../pluginTypes'
 
-export async function buildContext<TPlugin extends Plugin<string, any, any>>(
+export async function buildContext<TPluginObject extends PluginObject<any>>(
     events: EventEmitter<
-        TPlugin extends Plugin<string, any, any, infer TEvent> ? TEvent : never
+        TPluginObject extends PluginObject<infer TPlugin>
+            ? TPlugin extends Plugin<string, any, any, infer TEvent>
+                ? TEvent
+                : never
+            : never
     >,
-    plugins: TPlugin[]
+    plugins: TPluginObject[]
 ): Promise<
     Context<
-        TPlugin,
-        TPlugin extends Plugin<string, any, any, infer TEvent> ? TEvent : never
+        TPluginObject['plugin'],
+        TPluginObject extends PluginObject<infer TPlugin>
+            ? TPlugin extends Plugin<string, any, any, infer TEvent>
+                ? TEvent
+                : never
+            : never
     >
 > {
     const unregisters: Array<() => Promise<void>> = []
@@ -21,7 +29,13 @@ export async function buildContext<TPlugin extends Plugin<string, any, any>>(
             Promise.all(unregisters.map((unregister) => unregister()))
         },
     } as any)
-    const sortResult = resolve(plugins)
+    const sortResult = resolve(
+        plugins.map((plugin) => ({
+            name: plugin.plugin.pluginName,
+            ...plugin.plugin,
+            options: plugin.options,
+        }))
+    )
     if (!sortResult.success) {
         if (sortResult.error.status === SortStatus.CIRCULAR) {
             throw new PluginCyclicalError(sortResult.error.path)
@@ -33,7 +47,7 @@ export async function buildContext<TPlugin extends Plugin<string, any, any>>(
     }
     return sortResult.value.reduce(async (accpromise, plugin) => {
         const acc = await accpromise
-        const result = await plugin.register(acc)
+        const result = await plugin.register(acc, plugin.options ?? {})
         if (Array.isArray(result)) {
             const [unregister, pluginExports] = result
             unregisters.push(unregister)

@@ -1,10 +1,13 @@
 import { buildContext } from './context/contextFactory'
 import { PluginConfig } from './pluginConfig'
-import { Plugin } from './pluginTypes'
+import { Plugin, PluginObject } from './pluginTypes'
 
-export class Plugins<TPlugin extends Plugin<string>> {
-    constructor(public config: PluginConfig<TPlugin>) {}
+export class Plugins<TPluginObject extends PluginObject<any>> {
+    constructor(public config: PluginConfig<TPluginObject>) {}
     async load() {
-        return buildContext<TPlugin>(this.config.emitter, this.config.plugins)
+        return buildContext<TPluginObject>(
+            this.config.emitter,
+            this.config.plugins
+        )
     }
 }

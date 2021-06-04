@@ -4,7 +4,7 @@ import { http } from './support'
 describe('register', () => {
     test('simple', async () => {
         const instance = config({
-            plugins: [http()],
+            plugins: [{ plugin: http }],
         })
         const context = await instance.load()
         const response = await context.http.request({
