@@ -1,10 +1,4 @@
-export {
-    config,
-    Plugins,
-    plugin,
-    Plugin,
-    Context,
-} from '@geislabs/runtime-plugin'
+export * from '@geislabs/runtime-plugin'
 export {
     Event,
     EventEmitter,
