@@ -29,9 +29,9 @@ export type Context<
 > = GetImports<TImport> & GetDefaults<TEvent>
 
 export interface Plugin<
-    TName extends string,
-    TConfig extends PluginSchema = any,
-    TExports = any,
+    TName extends string = string,
+    TConfig = unknown,
+    TExports = unknown,
     TImports extends Plugin<any, any, any, any> = any,
     TEvent extends Event<any, any> = Event<any, any>
 > extends Sortable<TName, TImports> {
@@ -45,9 +45,7 @@ export interface Plugin<
 
 export interface PluginObject<TPlugin extends Plugin<any>> {
     plugin: TPlugin
-    options?: TPlugin extends Plugin<string, infer TSchema>
-        ? z.infer<TSchema>
-        : never
+    options?: TPlugin extends Plugin<string, infer TSchema> ? TSchema : never
 }
 
 export interface PluginInstance<

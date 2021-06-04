@@ -1,14 +1,10 @@
 import { URL } from 'url'
-import { Plugin, plugin, PluginObject } from '../../lib'
-import { HttpEvent } from './testEvents'
-import { TestHttpExports, TestRequest } from './testTypes'
+import { plugin } from '../../lib'
+import { HttpPlugin, TestRequest } from './testTypes'
 import { z } from 'zod'
 
-export const http = plugin<'http', any, TestHttpExports, any, HttpEvent>({
+export const http: HttpPlugin = {
     name: 'http',
-    options: z.object({
-        overrides: z.record(z.any()),
-    }),
     register({ events }, { ...overrides }) {
         return {
             request: async (request: TestRequest) => {
@@ -17,7 +13,7 @@ export const http = plugin<'http', any, TestHttpExports, any, HttpEvent>({
             },
         }
     },
-})
+}
 
 export const fetch = plugin({
     name: 'fetch',
