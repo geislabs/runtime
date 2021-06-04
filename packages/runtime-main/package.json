@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@geislabs/runtime",
-    "version": "0.0.76",
+    "version": "0.0.77",
     "description": "> TODO: description",
     "author": "mads hargreave <mads.hargreave@gmail.com>",
     "homepage": "",
@@ -25,8 +25,8 @@
         "watch": "npm run clean && tsc --watch"
     },
     "dependencies": {
-        "@geislabs/runtime-event": "^0.0.76",
-        "@geislabs/runtime-order": "^0.0.76",
-        "@geislabs/runtime-plugin": "^0.0.76"
+        "@geislabs/runtime-event": "^0.0.77",
+        "@geislabs/runtime-order": "^0.0.77",
+        "@geislabs/runtime-plugin": "^0.0.77"
     }
 }
