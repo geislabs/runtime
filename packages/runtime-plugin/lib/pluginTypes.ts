@@ -5,7 +5,7 @@ import { z } from 'zod'
 export type PluginSchema = z.ZodSchema<any>
 
 export type GetImports<TImport extends Plugin<string>> = {
-    [P in TImport['name']]: Extract<TImport, { nane: P }> extends Plugin<
+    [P in TImport['name']]: Extract<TImport, { name: P }> extends Plugin<
         string,
         any,
         infer TExports,
