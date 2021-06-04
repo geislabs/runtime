@@ -5,10 +5,13 @@ import { z } from 'zod'
 export type PluginSchema = z.ZodSchema<any>
 
 export type GetImports<TImport extends Plugin<string>> = {
-    [P in TImport['pluginName']]: Extract<
-        TImport,
-        { pluginName: P }
-    > extends Plugin<string, any, infer TExports, any, infer TEvent>
+    [P in TImport['name']]: Extract<TImport, { nane: P }> extends Plugin<
+        string,
+        any,
+        infer TExports,
+        any,
+        infer TEvent
+    >
         ? TExports & GetDefaults<TEvent>
         : never
 }
@@ -31,8 +34,8 @@ export interface Plugin<
     TExports = any,
     TImports extends Plugin<any, any, any, any> = any,
     TEvent extends Event<any, any> = Event<any, any>
-> {
-    pluginName: TName
+> extends Sortable<TName, TImports> {
+    name: TName
     depends?: TImports[]
     register: (
         context: Context<TImports, TEvent>,

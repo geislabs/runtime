@@ -32,7 +32,7 @@ describe('duplicates', () => {
                 { plugin: http, options: { status: 404 } },
                 {
                     plugin: plugin({
-                        pluginName: 'fetch' as const,
+                        name: 'fetch' as const,
                         depends: [http],
                         register({ http: instance }) {
                             return function (url: string) {

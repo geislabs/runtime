@@ -4,7 +4,7 @@ const plugins = config({
     plugins: [
         {
             plugin: {
-                pluginName: 'value' as const,
+                name: 'value' as const,
                 register() {
                     return { get: () => 5 }
                 },

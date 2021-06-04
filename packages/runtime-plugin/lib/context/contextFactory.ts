@@ -30,11 +30,7 @@ export async function buildContext<TPluginObject extends PluginObject<any>>(
         },
     } as any)
     const sortResult = resolve(
-        plugins.map((plugin) => ({
-            name: plugin.plugin.pluginName,
-            ...plugin.plugin,
-            options: plugin.options,
-        }))
+        plugins.map((plugin) => ({ ...plugin.plugin, options: plugin.options }))
     )
     if (!sortResult.success) {
         if (sortResult.error.status === SortStatus.CIRCULAR) {

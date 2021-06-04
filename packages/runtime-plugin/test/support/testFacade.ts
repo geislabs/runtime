@@ -5,7 +5,7 @@ import { TestHttpExports, TestRequest } from './testTypes'
 import { z } from 'zod'
 
 export const http = plugin<'http', any, TestHttpExports, any, HttpEvent>({
-    pluginName: 'http',
+    name: 'http',
     options: z.object({
         overrides: z.record(z.any()),
     }),
@@ -20,7 +20,7 @@ export const http = plugin<'http', any, TestHttpExports, any, HttpEvent>({
 })
 
 export const fetch = plugin({
-    pluginName: 'fetch',
+    name: 'fetch',
     depends: [http],
     register({ http }) {
         return (url: string) => {
@@ -30,7 +30,7 @@ export const fetch = plugin({
 })
 
 export const proxy = plugin({
-    pluginName: 'proxy',
+    name: 'proxy',
     depends: [http],
     options: z.object({
         proxy: z.record(z.string()),

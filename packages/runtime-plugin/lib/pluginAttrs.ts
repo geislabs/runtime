@@ -9,7 +9,7 @@ export interface CreatePluginAttrs<
     TImports extends Plugin<string>,
     TEvent extends Event<any> = Event<any>
 > {
-    pluginName: TName
+    name: TName
     depends?: TImports[]
     options?: TSchema
     register: (

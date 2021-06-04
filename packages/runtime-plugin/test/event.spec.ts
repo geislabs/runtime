@@ -1,4 +1,4 @@
-import { config, PluginObject } from '../lib'
+import { config } from '../lib'
 import { http, fetch, proxy } from './support'
 
 describe('event', () => {

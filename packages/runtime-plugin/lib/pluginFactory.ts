@@ -11,5 +11,5 @@ export function buildPlugin<
 >(
     attrs: CreatePluginAttrs<TName, TConfig, TExports, TImports, TEvent>
 ): Plugin<TName, TConfig, TExports, TImports, TEvent> {
-    return { ...attrs, name: attrs.pluginName }
+    return attrs
 }
